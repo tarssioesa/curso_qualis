@@ -249,6 +249,9 @@ b) Identificar como as des-informações são propagadas na rede.
 
 #### Covid -19 El discurso sobre China en Twitter : nuevo orden, vieja mentalidad.
 
+
+Autores: Francisca Marli Rodrigues de Andrade; Tarssio Barreto; Andrés Herrera;  Andrea Ugolini; Yu-Ting.
+
 <img src="china_virus.jpg" width="60%">
 
 ---
@@ -279,6 +282,19 @@ b) Identificar como as des-informações são propagadas na rede.
 knitr::include_graphics("team.gif")
 
 ```
+
+---
+
+### Links: 
+
+- http://www.storytellingwithdata.com/books  (Storytelling with Data)
+
+- https://r4ds.had.co.nz  ( R for Data Science)
+
+- https://www.data-to-viz.com (Data to viz)
+
+
+
 
 ---
 
@@ -318,6 +334,28 @@ d) Nosso primeiro banco de dados via API;
 
 <img src="festa.gif" width="80%">
 
+---
+
+### Nossos primeiros passos gráficos: 
+
+```{r}
+# Carregando um banco de dados: 
+
+df <- read.csv("Data/koreia_air.csv")
+
+
+### Instalando o primeiro pacote
+
+# install.packages("tidyverse")
+# install.packages("esquisse")
+
+require(tidyverse)
+require(esquisse)
+
+
+```
+
+
 
 ---
 
@@ -340,7 +378,6 @@ d) Nosso primeiro banco de dados via API;
 library(devtools)
 install_github('lhmet/inmetr')
 library(inmetr)
-library(tidyverse)
 
 
 ```
@@ -492,14 +529,12 @@ prec_anual <- prec %>%
 
 ```
 
-
+---
 # Visualizando: 
 
-```{r}
+```{r eval = FALSE}
 
-# install.packages("esquisse")
-library(esquisse)
-# esquisse::esquisser()
+require(ggplot2)
 
 
 ggplot(prec_anual) +
@@ -508,3 +543,19 @@ ggplot(prec_anual) +
  theme_minimal()
 ```
 
+---
+
+# Visualizando: 
+
+```{r echo = FALSE}
+
+require(ggplot2)
+
+
+ggplot(prec_anual) +
+ aes(x = year, y = prec) +
+ geom_area(size = 1L) +
+ theme_minimal()
+```
+
+---
