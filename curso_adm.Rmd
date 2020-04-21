@@ -2,7 +2,7 @@
 title: "Como o R salvou minha vida"
 subtitle: "e pode salvar a sua"
 author: "<br/>Tarssio Barreto"
-date: "<br/>2019/07/20"
+date: "<br/>Alguma quinta-feira da quarentena..."
 output:
   xaringan::moon_reader:
     css: [robot, metropolis-fonts]
@@ -27,6 +27,18 @@ background-size: contain
 ---
 
 # Quem sou eu?
+
+---
+
+### Big Data NOW
+
+"In addition to being able to support modeling efforts and predicting the flow of a pandemic, big data, machine learning, and other technology can quickly and effectively analyze data to help humans on the frontlines figure out the best preparation and response to this and future pandemics". (The Vital Role Of Big Data In The Fight Against Coronavirus - FORBES)
+
+“We also have some work we've been doing in understanding social media responses to the pandemic. One project in particular has focused on tracking data from Chinese social media as coronavirus spread there in mid-January, and then comparing it to American data.” (Understanding the COVID-19 Pandemic as a Big Data Analytics Issue - James Hendler)
+
+The COVID-19 crisis has intensified the debate over big data and privacy. Governments are pulling together data from public and private systems in order to predict and counter the spread of COVID-19. But setting aside privacy protections in a time of crisis could lead to new, permanent norms (Can Big Data Fight a Pandemic? - Yale Insights)
+
+
 
 ---
 # Por que aprender R?
@@ -208,8 +220,6 @@ Desafios:
 <br/>
 <font size="4"> <b>Fernando Barbalho </b> — Doutor em Administração pela UnB (2014). É cientista de dados no Tesouro Nacional. Pesquisa e implementa produtos para transparência no setor público brasileiro. </font> 
 <br/>
-<font size="4"> <b> Tomás Barcellos </b> — Economista formado na UFSC (2014). Trabalha no Ministério da Agricultura, Pecuária e Abastecimento desde 2015, atuando hoje como Coordenador de Inovação. </font>
-<br/>
 <font size="4"> <b>Leonardo F. Nascimento </b>— Doutor em sociologia pelo Instituto de Estudos Sociais e Políticos — IESP/UERJ (2013). Pesquisa temas relacionados à sociologia digital e aos métodos digitais de pesquisa. Atualmente é professor do Instituto de Ciência, Tecnologia e Inovação da UFBA. </font>
 
 
@@ -223,34 +233,33 @@ Desafios:
 
 
 ---
+# Covid-19
 
-### R é uma poderosa linguagem de programação e pode salvar sua vida
+## Covid -19 El discurso sobre China en Twitter : nuevo orden, vieja mentalidad.
 
-##### Dadoscope
+### Desafios
 
-Desafio pessoal: Criar uma interface reativa integrando os usuários a comentários advindos de duas hashtags antagônicas: 
+a) Buscar padrões de referências a China no Twitter durante a pandemia.
 
-[Lavinia](https://okrabarreto.shinyapps.io/Lavinia/)
-
-```{r echo= FALSE, warning = FALSE, message = FALSE, fig.align='center'}
-knitr::include_graphics("jane.gif")
-
-```
+b) Identificar como as des-informações são propagadas na rede.
 
 ---
 
-### R é uma poderosa linguagem de programação e pode salvar sua vida
+### Covid-19
 
-##### Dadoscope
+#### Covid -19 El discurso sobre China en Twitter : nuevo orden, vieja mentalidad.
 
-Mais um pouco: 
-
-<img src="redes_moro.png" width="90%">
-
+<img src="china_virus.jpg" width="60%">
 
 ---
 
+#### Covid-19
 
+### Covid -19 El discurso sobre China en Twitter : nuevo orden, vieja mentalidad.
+
+<img src="bot_time.jpeg" width="80%">
+
+---
 
 ### Comunidade acolhedora
 
@@ -301,15 +310,53 @@ knitr::include_graphics("team.gif")
 
 a) Conhecendo a interface R;
 
-b) Criando nosso primeiro projeto;
+b) Criando nosso Github; 
 
-c) Carregando banco de dados
+c) Nosso primeiro projeto;
+
+d) Nosso primeiro banco de dados via API;
 
 <img src="festa.gif" width="80%">
 
 
 ---
 
+# inmetr: Historical Data from Brazilian Meteorological Stations in R
+
+* Conectando a uma API que retornará os dados pretendidos;
+
+* http://www.inmet.gov.br/projetos/rede/pesquisa/
+
+* Vamos criar uma conta!
+
+---
+
+# Instalando e carregando o pacote inmetr
+
+```{r}
+
+# install.packages("devtools")
+
+library(devtools)
+install_github('lhmet/inmetr')
+library(inmetr)
+library(tidyverse)
+
+
+```
+---
+
+# Carregando todo o banco de dados: 
+
+```{r}
+
+head(bdmep_meta)
+
+```
+
+
+* Mas teremos que editar para selecionar uma estação. E agora?
+---
 
 # Pipe
 
@@ -325,16 +372,6 @@ knitr::include_graphics("pipe.jpg")
 ```
 
 ---
-
-# Janitor 
-
-* _clean_names()_ -> Ajustando nome de variáveis;
-
-* _ tabyl_ -> Frequência Acumulada; 
-
-* _remove_empty()_  -> Linhas ou colunas em branco;
-
-
 ```{r echo= FALSE, warning = FALSE, message = FALSE, fig.align='center'}
 knitr::include_graphics("cliff_feliz.gif")
 
@@ -345,7 +382,6 @@ knitr::include_graphics("cliff_feliz.gif")
 background-image: url(https://i2.wp.com/gvnation.com/wp-content/uploads/2019/06/tumblr_ppjo4j6Hta1r3v7t2o1_500.gif?resize=500%2C231&ssl=1)
 background-position: 50% 50%
 background-size: contain
-
 
 # Dplyr
 
@@ -360,114 +396,115 @@ background-size: contain
 
 * __summarise__ 
 
-* **case_when**
+* __case_when__
 
 ---
 
-background-image: url(https://uploads.disquscdn.com/images/06d1fe3f6e9037af5f9b408d9ede1f3908c941b4864d7b646b12bdbeac50293f.gif)
-background-position: 50% 50%
-background-size: contain
+# __filter__
 
-# Forcats
+```{r}
 
-* **fct_recode**
-
-* **fct_collapse**
-
-* **fct_reorder**
-
-* **fct_lump**
-
-* **fct_cross**
-
-* **fct_drop**
+aux <- bdmep_meta
 
 
----
-
-# E como visualizaremos isto?
-
-Referências: 
-
-* [import.io](https://www.import.io/post/8-fantastic-examples-of-data-storytelling/?source=post_page---------------------------)
-
-* [data_to_viz](https://www.data-to-viz.com/)
-
-* [dataviz catalogue](https://datavizcatalogue.com/)
-
-* [top 50 ggplot](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
-
----
-
-# E como visualizaremos isto?
-
-O que aprenderemos: 
-
-* inspectdf
-
-* ggplot2
-
-* highchart
+# Filtrando o Estado da Bahia
 
 
-```{r echo= FALSE, warning = FALSE, message = FALSE, fig.align='center'}
-knitr::include_graphics("challenge.gif")
-
-```
----
-
-# inspectdf
+bahia <- aux %>% 
+  filter(state == "Bahia")
 
 
-* *inspect_types*
+# Filtrando: Salvador
 
-* *inspect_na()*
 
-* *inspect_num()*
+salvador <- bahia %>% 
+  filter(name == "Salvador (Ondina)")
 
-* *inspect_imb()*
 
-* *inspect_cat*
+# Por fim atribuiremos o ID:
 
-```{r echo= FALSE, warning = FALSE, message = FALSE, fig.align='center'}
-knitr::include_graphics("cliff2.gif")
+id <- salvador$id
 
 ```
 
 ---
 
-# ggplot2 ou "como construir o que eu quiser?"
+# Acessando a API e buscando os dados: 
 
-* No ggplot2, os gráficos são construídos camada por camada, sendo a primeira delas dada pela função ggplot() (repare que não tem o “2”). Essa função recebe um data frame e cria a camada base do gráfico. 
+```{r}
 
-* A segunda camada especifica a forma geométrica utilizada no mapeamento das observações;
+start_date <- "01/01/1961"
 
-* As camadas são unidas com um +;
+end_date <- format(Sys.Date(), "%d/%m/%Y")
 
-* A função *aes()* é responsável por descrever como as variáveis serão mapeadas nos aspectos visuais da forma geométrica escolhida.
+met_data <- bdmep_import(id = id,
+                         sdate = start_date, 
+                         edate = end_date, 
+                         email = "tarssio.disap@hotmail.com",
+                         passwd = "9mks3vfn",
+                         verbose = TRUE)
+```
 
-* As possibilidades tendem ao infinito, o que desejam fazer?
+---
+
+### Primeiros ajustes na precipitação: 
+
+__select__
+
+```{r}
+
+prec <- met_data %>% 
+  select(date, prec) %>% 
+  na.omit()
+
+```
 
 ---
 
-# highchart : Animando nossa visualização de dados
+# Agregando ano a ano
+
+__lubridate__  + __mutate__
 
 
-[Highchart](http://jkunst.com/highcharter/hchart.html):
+```{r}
 
-Prós: 
+library(lubridate)
 
-* Gráficos com interatividade;
 
-* Gráficos com certa estética e que podem ser combinados em app web;
+prec <- prec %>% 
+  mutate(year = year(date))
 
-* Opções diversas e bem documentadas;
-
-Desafio: 
-
-* Linguagem menos intuitiva que o ggplot2
-
-O que fazer: Procurar no site a opção que desejamos e clonar!
+```
 
 ---
+
+# Como agregar?
+
+
+__group_by__ + __summarise__
+
+```{r}
+
+prec_anual <- prec %>% 
+  group_by(year) %>% 
+  summarise(prec = sum(prec))
+
+
+```
+
+
+# Visualizando: 
+
+```{r}
+
+# install.packages("esquisse")
+library(esquisse)
+# esquisse::esquisser()
+
+
+ggplot(prec_anual) +
+ aes(x = year, y = prec) +
+ geom_area(size = 1L) +
+ theme_minimal()
+```
 
