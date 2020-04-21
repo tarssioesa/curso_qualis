@@ -409,6 +409,10 @@ knitr::include_graphics("pipe.jpg")
 ```
 
 ---
+
+# Energia lá em cima!!!
+
+
 ```{r echo= FALSE, warning = FALSE, message = FALSE, fig.align='center'}
 knitr::include_graphics("cliff_feliz.gif")
 
