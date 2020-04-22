@@ -2,7 +2,7 @@
 title: "Como o R salvou minha vida"
 subtitle: "e pode salvar a sua"
 author: "<br/>Tarssio Barreto"
-date: "<br/>Alguma quinta-feira da quarentena..."
+date: "<br/>Alguma quarta-feira da quarentena..."
 output:
   xaringan::moon_reader:
     css: [robot, metropolis-fonts]
