@@ -293,31 +293,6 @@ knitr::include_graphics("team.gif")
 
 - https://www.data-to-viz.com (Data to viz)
 
-
-
-
----
-
-# Tidyverse e uma interface estruturada de programação
-
-
-* Eficiência algorítmica vs eficiência de trabalho
-
-* Tidy data
-
-* Utilização do operador __%>%__ (pipe).
-
-* Aparato mnemônico
-
-* Minimalidade e funções puras
-
----
-
-# Tidyverse e uma interface estruturada de programação
-
-
-<img src="data_science.png" width="100%">
-
 ---
 
 # Mão na massa
@@ -351,6 +326,10 @@ df <- read.csv("Data/koreia_air.csv")
 
 require(tidyverse)
 require(esquisse)
+
+# Para criar gráficos: 
+
+# esquisser(df)
 
 
 ```
@@ -393,7 +372,32 @@ head(bdmep_meta)
 
 
 * Mas teremos que editar para selecionar uma estação. E agora?
+
 ---
+
+# Tidyverse e uma interface estruturada de programação
+
+
+* Eficiência algorítmica vs eficiência de trabalho
+
+* Tidy data
+
+* Utilização do operador __%>%__ (pipe).
+
+* Aparato mnemônico
+
+* Minimalidade e funções puras
+
+---
+
+# Tidyverse e uma interface estruturada de programação
+
+
+<img src="data_science.png" width="100%">
+
+
+---
+
 
 # Pipe
 
