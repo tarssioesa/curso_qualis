@@ -334,7 +334,9 @@ require(esquisse)
 
 # Para criar gráficos: 
 
-# esquisser(df)
+# SOBRE: https://www.youtube.com/watch?v=ZdPNBF6GWBw&list=PLUhtb0BvZvZQpy44ksG0JsySCDqmf8pZ4
+
+### Função: esquisser()
 
 
 ```
