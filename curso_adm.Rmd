@@ -314,6 +314,11 @@ d) Nosso primeiro banco de dados via API;
 ### Nossos primeiros passos gráficos: 
 
 ```{r}
+
+# O que é Programação Orientada a Objeto?
+
+# https://www.codementor.io/@otrenav/object-oriented-programming-in-r-part-1-the-basics-hcgwbcdmo
+
 # Carregando um banco de dados: 
 
 df <- read.csv("Data/koreia_air.csv")
