@@ -505,15 +505,14 @@ __select__
 
 ```{r}
 
-prec <- met_data %>% 
-  select(date, prec) %>% 
-  na.omit()
+ssa_data <- met_data %>% 
+  select(date, prec, tair, tmax, tmin)
 
 ```
 
 ---
 
-# Agregando ano a ano
+# Arredondando a data
 
 __lubridate__  + __mutate__
 
@@ -523,8 +522,8 @@ __lubridate__  + __mutate__
 library(lubridate)
 
 
-prec <- prec %>% 
-  mutate(year = year(date))
+ssa_data <- ssa_data %>% 
+  mutate(date_ = floor_date(date, unit = "day"))
 
 ```
 
@@ -537,40 +536,102 @@ __group_by__ + __summarise__
 
 ```{r}
 
-prec_anual <- prec %>% 
+ssa_data_x <- ssa_data %>% 
+  group_by(date_) %>% 
+  summarise_if(is.numeric, funs(mean(., na.rm = TRUE)))
+
+
+```
+
+---
+# Omitindo NA: 
+
+```{r}
+
+ssa_data_x <- ssa_data_x %>% 
+  na.omit()
+
+```
+
+---
+
+# Agregando chuva por ano
+
+```{r}
+
+### Agrupando chuva por ano
+
+ssa_prec <- ssa_data_x %>% 
+  mutate(year = year(date_)) %>% 
   group_by(year) %>% 
-  summarise(prec = sum(prec))
+  summarise(acc_prec = sum(prec))
 
 
 ```
 
 ---
-# Visualizando: 
 
-```{r eval = FALSE}
+# Visualizando
 
-require(ggplot2)
+```{r}
+ssa_prec %>% 
+  ggplot(aes(x = acc_prec)) + 
+  geom_density() +
+  theme_classic()
 
-
-ggplot(prec_anual) +
- aes(x = year, y = prec) +
- geom_area(size = 1L) +
- theme_minimal()
 ```
 
 ---
 
-# Visualizando: 
+# Um pouco de probabilidade
 
-```{r echo = FALSE}
+```{r}
 
-require(ggplot2)
+require(fitdistrplus)
+
+aux <- fitdist(ssa_prec$acc_prec, "norm")
+
+summary(aux)
+
+### Trabalhar probabilidades
+```
 
 
-ggplot(prec_anual) +
- aes(x = year, y = prec) +
- geom_area(size = 1L) +
- theme_minimal()
+---
+
+# Numero de dias de chuva: 
+
+```{r}
+ssa_day <- ssa_data_x %>% 
+  mutate(year = year(date_)) %>% 
+  group_by(year) %>% 
+  count(prec > 0 )
+
 ```
 
 ---
+
+# Visualizando
+
+```{r}
+ssa_day %>% 
+  ggplot(aes(x = n)) +
+  geom_histogram(col = "black") +
+  theme_classic()
+
+```
+
+--- 
+
+# Probabilidade:
+
+```{r}
+### Distribuicao discreta: Poisson
+
+aux2 <- fitdist(ssa_day$n, "pois")
+
+summary(aux2)
+
+# Testar valores
+```
+
